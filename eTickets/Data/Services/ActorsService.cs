@@ -1,4 +1,5 @@
 ﻿using eTickets.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data.Services
 {
@@ -11,31 +12,35 @@ namespace eTickets.Data.Services
             _context = context;
 
         }
-        public void AddActor(Actor actor)
+        public async Task AddActorAsync (Actor actor)
         {
-            _context.Actors.Add(actor);
+            await _context.Actors.AddAsync(actor);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteActorAsync(int id)
+        {
+            _context.Remove(_context.Actors.Single(a => a.Id == id));
             _context.SaveChanges();
         }
 
-        public void DeleteActor(int id)
+        public async Task<Actor> GetActorByIdAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Actor GetActorById(int id)
-        {
-            return _context.Actors.FirstOrDefault(a => a.Id == id);
-        }
-
-        public IEnumerable<Actor> GetActors()
-        {
-            var result = _context.Actors.ToList();
+            var result = await _context.Actors.FirstOrDefaultAsync(a => a.Id == id);
             return result;
         }
 
-        public Actor UpdateActor(int id, Actor newActor)
+        public async Task<IEnumerable<Actor>> GetActorsAsync()
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.ToListAsync();
+            return result;
+        }
+
+        public async Task<Actor> UpdateActorAsync(int id, Actor newActor)
+        {
+            _context.Update(newActor);
+            await _context.SaveChangesAsync();
+            return newActor;
         }
     }
 }
