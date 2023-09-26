@@ -33,6 +33,21 @@ namespace eTickets.Data.Cart
             _context.SaveChanges();
         }
 
+        public void RemoveItemFromCart(Movie movie)
+        {
+            var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Movie.Id == movie.Id &&
+                n.ShoppingCartId == ShoppingCartId);
+
+            if (shoppingCartItem != null)
+            {
+                if(shoppingCartItem.Amount > 0)
+                    shoppingCartItem.Amount--;
+                else
+                    _context.ShoppingCartItems.Remove(shoppingCartItem);
+            }
+            _context.SaveChanges();
+        }
+
         public string ShoppingCartId { get; set; }
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
 
