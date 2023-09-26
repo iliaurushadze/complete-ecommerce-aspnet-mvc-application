@@ -36,5 +36,9 @@ namespace eTickets.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Actor_Movie> Actor_Movies { get; set; }
 
+
+        //Order relaited table
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }
