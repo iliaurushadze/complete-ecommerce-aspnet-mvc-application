@@ -50,7 +50,7 @@ namespace eTickets.Data.Cart
 
             if (shoppingCartItem != null)
             {
-                if(shoppingCartItem.Amount > 0)
+                if(shoppingCartItem.Amount > 1)
                     shoppingCartItem.Amount--;
                 else
                     _context.ShoppingCartItems.Remove(shoppingCartItem);
