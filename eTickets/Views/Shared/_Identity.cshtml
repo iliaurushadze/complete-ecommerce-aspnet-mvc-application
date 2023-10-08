@@ -16,7 +16,7 @@ else
     @*User profile section*@
     <div class="dropdown">
         <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="bi bi-person-badge"></i> Hello @userManager.GetUserName(User)
         </button>
         <ul class="dropdown-menu" aria-labelledby="profile-btn">
@@ -25,8 +25,17 @@ else
                     <i class="bi bi-list"></i> Orders
                 </a>
             </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                        <i class="bi bi-people"></i> Users
+                    </a>
+                </li>
+            }   
         </ul>
     </div>
+
 
     <span style="padding:5px"></span>
     <form asp-controller="Account" asp-action="Logout">
