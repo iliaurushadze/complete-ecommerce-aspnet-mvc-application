@@ -30,6 +30,8 @@ namespace eTickets
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
+            builder.Services.AddRazorPages();
+
             //Authentication and authorization
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             builder.Services.AddMemoryCache();
@@ -59,6 +61,9 @@ namespace eTickets
             //Authentication and Autorization
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapRazorPages();
+
 
             app.MapControllerRoute(
                 name: "default",

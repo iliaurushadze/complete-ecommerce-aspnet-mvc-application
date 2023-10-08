@@ -1,5 +1,6 @@
 ﻿using eTickets.Data;
 using eTickets.Models;
+using eTickets.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,10 @@ namespace eTickets.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-        public IActionResult Index()
+
+        public IActionResult Login()
         {
-            return View();
+            return View(new LoginVM());
         }
     }
 }
