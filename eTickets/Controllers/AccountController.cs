@@ -25,6 +25,7 @@ namespace eTickets.Controllers
             return View(new LoginVM());
         }
 
+        [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             if(!ModelState.IsValid)
