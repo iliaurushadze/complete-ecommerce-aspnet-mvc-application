@@ -9,9 +9,9 @@ namespace eTickets.Data
     public class AppDbInitializer
     {
 
-        public static void Seed(ApplicationBuilder applicationBuilder)
+        public static void Seed(WebApplication webApplication)
         {
-            using(var serviceScope = applicationBuilder.ApplicationServices.CreateScope()) 
+            using(var serviceScope = webApplication.Services.CreateScope()) 
             { 
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 

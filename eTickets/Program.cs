@@ -70,7 +70,7 @@ namespace eTickets
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             //Seed Database
-            //AppDbInitializer.Seed(app);
+            AppDbInitializer.Seed(app);
             AppDbInitializer.SeedUserAndRolesAsync(app).Wait();
 
             app.Run();
