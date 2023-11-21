@@ -209,6 +209,18 @@ namespace eTickets.Data
                             CinemaId = 1,
                             DirectorId = 5,
                             MovieCategory = MovieCategory.Drama
+                        },
+                        new Movie()
+                        {
+                            Name = "No Country for Old Men",
+                            Description = "This is the No Country for Old Men movie description",
+                            Price = 39.50,
+                            ImageURL = "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_.jpg",
+                            StartDate = DateTime.Now.AddDays(3),
+                            EndDate = DateTime.Now.AddDays(20),
+                            CinemaId = 1,
+                            DirectorId = 5,
+                            MovieCategory = MovieCategory.Drama
                         }
                     });
                     context.SaveChanges();

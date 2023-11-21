@@ -36,34 +36,48 @@
                                 @Model.Director.FullName
                             </a>
                         </p>
-                        <p class="card-text"><b>Category: </b>@Model.MovieCategory</p>
-                        <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yyyy")</p>
-                        <p class="card-text"><b>End Date: </b>@Model.EndDate.ToString("dd MMM yyyy")</p>
+                        <p class="card-text"><b>Genre: </b>@Model.MovieCategory</p>
+                        @* <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yyyy")</p>
+                        <p class="card-text"><b>End Date: </b>@Model.EndDate.ToString("dd MMM yyyy")</p> *@
                         <p class="card-text ">
                             <b>Status: </b>
-                            @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                            @if (Model.PlayerLink != null && Model.PlayerLink != "")
                             {
                                 <span class="badge bg-success text-white">AVAILABLE</span>
                             }
-                            else if (DateTime.Now < Model.StartDate)
+                            @* else if (DateTime.Now < Model.StartDate)
                             {
                                 <span class="badge bg-primary text-white">UPCOMING</span>
-                            }
+                            } *@
                             else
                             {
-                                <span class="badge bg-danger text-white">EXPIRED</span>
+                                <span class="badge bg-danger text-white">UPCOMING</span>
                             }
+                        </p>
+                        <p>
+                            <a href="@Model.PlayerLink" class="link-success">Watch Now</a>
                         </p>
                         <p class="card-text">
                             <b>Actors: </b>
                             <hr />
-                            <div class="row">
+                            @* <div class="row">
                                 @foreach(var actor in Model.Actor_Movies)
                                 {
                                     <div class="column text-center">
                                         <img class="border-info rounded-circle" src="@actor.Actor.ProfilePictureURL" style="max-width: 150px"/>
                                         <br />
                                         <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
+                                    </div>
+                                }
+                            </div> *@
+
+                            <div class="card-group card-group-scroll" style="width: 40rem;">
+                                @foreach (var actor in Model.Actor_Movies)
+                                {
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-center"><a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a></h6>
+                                        </div>
                                     </div>
                                 }
                             </div>

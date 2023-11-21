@@ -29,6 +29,12 @@ namespace eTickets.Models.ViewModels
         [Required(ErrorMessage = "Movie category is required")]
         [Display(Name = "Select a category")]
         public MovieCategory MovieCategory { get; set; }
+        [Required(ErrorMessage = "Download Link is required")]
+        [Display(Name = "Download Link")]
+        public string DownloadLink { get; set; }
+        [Required(ErrorMessage = "Player Link is required")]
+        [Display(Name = "Player Link")]
+        public string PlayerLink { get; set; }
 
         // Relationships
         [Required(ErrorMessage = "Movie actors is required")]

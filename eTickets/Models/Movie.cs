@@ -15,6 +15,8 @@ namespace eTickets.Models
         public double Price { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public string DownloadLink { get; set; }
+        public string PlayerLink { get; set; }
         public MovieCategory MovieCategory { get; set; }
         // Relationships
         public List<Actor_Movie> Actor_Movies { get; set; }
