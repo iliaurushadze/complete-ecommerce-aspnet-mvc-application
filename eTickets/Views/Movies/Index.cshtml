@@ -30,23 +30,29 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <p class="card-text">@movie.Description</p>
-                            <p class="card-text"><b>Cinema: </b>@movie.Cinema.Name</p>
+                            @* <p class="card-text"><b>Cinema: </b>@movie.Cinema.Name</p> *@
                             <p class="card-text"><b>Genre: </b>@movie.MovieCategory</p>
-                            <p class="card-text"><b>Start Date: </b>@movie.StartDate.ToString("dd MMM yyyy")</p>
-                            <p class="card-text"><b>End Date: </b>@movie.EndDate.ToString("dd MMM yyyy")</p>
+                            <p class="card-text">
+                                <b>Director: </b>
+                                <a asp-controller="Directors" asp-action="Details" asp-route-id="@movie.DirectorId">
+                                    @movie.Director.FullName
+                                </a>
+                            </p>
+                            @* <p class="card-text"><b>Start Date: </b>@movie.StartDate.ToString("dd MMM yyyy")</p>
+                            <p class="card-text"><b>End Date: </b>@movie.EndDate.ToString("dd MMM yyyy")</p> *@
                             <p class="card-text ">
                                 <b>Status: </b>
-                                @if(DateTime.Now >= movie.StartDate && DateTime.Now <= movie.EndDate)
+                                @if (movie.PlayerLink != null && movie.PlayerLink != "")
                                 {
                                     <span class="badge bg-success text-white">AVAILABLE</span>
                                 }
-                                else if (DateTime.Now < movie.StartDate)
-                                {
-                                    <span class="badge bg-primary text-white">UPCOMING</span>
-                                }
+                                @* else if (DateTime.Now < Model.StartDate)
+                            {
+                            <span class="badge bg-primary text-white">UPCOMING</span>
+                            } *@
                                 else
                                 {
-                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
                                 }
                             </p>
 

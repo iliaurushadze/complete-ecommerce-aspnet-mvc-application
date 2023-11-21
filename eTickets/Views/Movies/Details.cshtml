@@ -24,12 +24,12 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <p class="card-text">@Model.Description</p>
-                        <p class="card-text">
+                        @* <p class="card-text">
                             <b>Cinema: </b>
                             <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">
                                 @Model.Cinema.Name
                             </a>
-                        </p>
+                        </p> *@
                         <p class="card-text">
                             <b>Director: </b>
                             <a asp-controller="Directors" asp-action="Details" asp-route-id="@Model.DirectorId">
@@ -51,12 +51,22 @@
                             } *@
                             else
                             {
-                                <span class="badge bg-danger text-white">UPCOMING</span>
+                                <span class="badge bg-primary text-white">UPCOMING</span>
                             }
                         </p>
-                        <p>
-                            <a href="@Model.PlayerLink" class="link-success">Watch Now</a>
-                        </p>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="alert alert-info" role="alert">
+                                Login To Watch!
+                            </div>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                <a href="@Model.PlayerLink" class="alert-link">Watch Now</a>
+                            </div>
+                        }
+                        
                         <p class="card-text">
                             <b>Actors: </b>
                             <hr />
